@@ -42,6 +42,7 @@ source ~/.bashrc
 redis_start
 npm config set registry http://registry.npmjs.org/
 npm install -g node-gyp
+brew install docker
 
 # generate ssh keys (needed for upload to your github profile)
 ssh-keygen -t rsa
@@ -53,6 +54,8 @@ brew cask install android-studio
 brew cask install google-chrome
 brew cask install slack
 brew cask install visual-studio-code
+brew cask install virtualbox
+brew cask install vagrant
 
 #install a better terminal, zsh and oh-my-zsh
 brew cask install iterm2
