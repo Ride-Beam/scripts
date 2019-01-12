@@ -28,18 +28,12 @@ brew cask install java8
 brew install maven
 brew install postgresql
 ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents
-echo 'alias pg_start="launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"' >> ~/.bashrc 
-echo 'alias pg_stop="launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"' >> ~/.bashrc
-source ~/.bashrc
-pg_start
+brew services start postgresql
 createuser -s postgres
 brew install postgis
 brew install redis
 ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents
-echo 'alias redis_start="launchctl load ~/Library/LaunchAgents/homebrew.mxcl.redis.plist"' >> ~/.bashrc 
-echo 'alias redis_stop="launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.redis.plist"' >> ~/.bashrc
-source ~/.bashrc
-redis_start
+brew services start redis
 npm config set registry http://registry.npmjs.org/
 npm install -g node-gyp
 brew install docker
@@ -57,8 +51,9 @@ brew cask install vagrant
 #install a better terminal, zsh and oh-my-zsh
 brew cask install iterm2
 brew install zsh
+curl -o- https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | zsh
 echo 'source ~/.bashrc' >> ~/.zshrc
-curl -o- https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | bash
+source ~/.zshrc
 
 # generate ssh keys (needed for upload to your github profile)
 ssh-keygen -t rsa
