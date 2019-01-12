@@ -46,16 +46,15 @@ brew cask install visual-studio-code
 brew cask install virtualbox
 brew cask install vagrant
 
-#install a better terminal, zsh and oh-my-zsh
-brew cask install iterm2
-brew install zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-echo 'source ~/.bashrc' >> ~/.zshrc
-source ~/.zshrc
-
 # generate ssh keys (needed for upload to your github profile)
 read -t 1 -n 10000 discard 
 ssh-keygen -t rsa
+
+#install a better terminal, zsh and oh-my-zsh
+brew cask install iterm2
+brew install zsh
+echo 'source ~/.bashrc' >> ~/.zshrc
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh > /dev/null &)"
 
 #Manual steps
 echo 'Setup process complete!'
