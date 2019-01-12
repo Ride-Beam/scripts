@@ -8,6 +8,7 @@
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew tap caskroom/cask
 brew tap caskroom/versions
+brew tap homebrew/services
 brew cask install cakebrew
 
 # Install some basic platform and dev tools
@@ -48,12 +49,12 @@ brew cask install vagrant
 #install a better terminal, zsh and oh-my-zsh
 brew cask install iterm2
 brew install zsh
-curl -o- https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 echo 'source ~/.bashrc' >> ~/.zshrc
 source ~/.zshrc
 
 # generate ssh keys (needed for upload to your github profile)
-read -t 0.1 -n 10000 discard 
+read -t 1 -n 10000 discard 
 ssh-keygen -t rsa
 
 #Manual steps
