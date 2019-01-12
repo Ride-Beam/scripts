@@ -16,9 +16,6 @@ brew install git
 touch ~/.bashrc
 touch ~/.bash_profile
 curl -o- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
-echo 'export NVM_DIR="$HOME/.nvm"' >> ~/.bashrc 
-echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm' >> ~/.bashrc
-echo '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion' >> ~/.bashrc
 source ~/.bashrc
 nvm install 8
 nvm use 8
@@ -56,9 +53,10 @@ echo 'source ~/.bashrc' >> ~/.zshrc
 source ~/.zshrc
 
 # generate ssh keys (needed for upload to your github profile)
+read -t 0.1 -n 10000 discard 
 ssh-keygen -t rsa
 
 #Manual steps
 echo 'Setup process complete!'
-echo 'Don\`t forget to upload your public key to your github profile. run "cat ~/.ssh/id_rsa.pub" to view your public key'
+echo "Don't forget to upload your public key to your github profile. run 'cat ~/.ssh/id_rsa.pub' to view your public key"
 echo 'Close this window and all open terminals, and then re-open iterm2 for full functionality'
