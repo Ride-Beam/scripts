@@ -13,7 +13,6 @@ brew cask install cakebrew
 # Install some basic platform and dev tools
 xcode-select --install
 brew install git
-brew install yarn
 touch ~/.bashrc
 touch ~/.bash_profile
 curl -o- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
@@ -24,6 +23,7 @@ source ~/.bashrc
 nvm install 8
 nvm use 8
 nvm alias default 8
+brew install yarn
 brew cask install java8
 brew install maven
 brew install postgresql
@@ -44,9 +44,6 @@ npm config set registry http://registry.npmjs.org/
 npm install -g node-gyp
 brew install docker
 
-# generate ssh keys (needed for upload to your github profile)
-ssh-keygen -t rsa
-
 #Install som productivity tools
 brew cask install pgadmin4
 brew cask install android-sdk
@@ -60,8 +57,11 @@ brew cask install vagrant
 #install a better terminal, zsh and oh-my-zsh
 brew cask install iterm2
 brew install zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 echo 'source ~/.bashrc' >> ~/.zshrc
+curl -o- https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | bash
+
+# generate ssh keys (needed for upload to your github profile)
+ssh-keygen -t rsa
 
 #Manual steps
 echo 'Setup process complete!'
