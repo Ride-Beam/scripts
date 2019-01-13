@@ -4,6 +4,9 @@
 # All things here may not suit everyone.
 # Please modify for your own setup or copy paste needed parts 
 
+# xcode tools
+xcode-select --install
+
 #install homebrew package manager
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew tap caskroom/cask
@@ -12,7 +15,6 @@ brew tap homebrew/services
 brew cask install cakebrew
 
 # Install some basic platform and dev tools
-xcode-select --install
 brew install git
 touch ~/.bashrc
 touch ~/.bash_profile
@@ -49,7 +51,7 @@ brew cask install vagrant
 #install a better terminal, zsh and oh-my-zsh
 brew cask install iterm2
 brew install zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sed '/\s*env\s\s*zsh\s*/d')"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sed 's|env zsh -l|# env zsh -l|')"
 echo 'source ~/.bashrc' >> ~/.zshrc
 
 # generate ssh keys (needed for upload to your github profile)
