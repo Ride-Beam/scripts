@@ -4,9 +4,6 @@
 # All things here may not suit everyone.
 # Please modify for your own setup or copy paste needed parts 
 
-# xcode tools
-xcode-select --install
-
 #install homebrew package manager
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew tap caskroom/cask
