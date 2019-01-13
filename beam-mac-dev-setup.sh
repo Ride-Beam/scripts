@@ -56,7 +56,7 @@ read -t 1 -n 10000 discard
 read -p "Do you want to generate a ssh key pair and upload your public key to github? [y/N]" -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-    echo 'If you have not already done so, please create a github account here https://github.com/ before continuing.'
+    echo 'If you have not already done so, please create a github account here https://github.com/join before continuing.'
     echo
     ssh-keygen -t rsa
     ssh-add -K ~/.ssh/id_rsa
