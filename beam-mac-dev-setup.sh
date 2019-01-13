@@ -52,8 +52,20 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 echo 'source ~/.bashrc' >> ~/.zshrc
 
 # generate ssh keys (needed for upload to your github profile)
-read -t 1 -n 10000 discard 
-ssh-keygen -t rsa
+read -t 1 -n 10000 discard
+read -p "Do you want to generate a ssh key pair and upload your public key to github? [y/N]" -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    echo 'If you have not already done so, please create a github account here https://github.com/ before continuing.'
+    echo
+    ssh-keygen -t rsa
+    ssh-add -K ~/.ssh/id_rsa
+    pub=`cat ~/.ssh/id_rsa.pub`
+    read -p "Enter github username: " githubuser
+    echo "Using username $githubuser"
+    read -s -p "Enter github password for user $githubuser: " githubpass
+    curl -u "$githubuser:$githubpass" -X POST -d "{\"title\":\"`hostname`\",\"key\":\"$pub\"}" https://api.github.com/user/keys
+fi
 
 #Manual steps
 echo 'Setup process complete!'
