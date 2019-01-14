@@ -69,5 +69,4 @@ fi
 
 #Manual steps
 echo 'Setup process complete!'
-echo "Don't forget to upload your public key to your github profile. run 'cat ~/.ssh/id_rsa.pub' to view your public key"
 echo 'Close this window and all open terminals, and then re-open iterm2 for full functionality'
