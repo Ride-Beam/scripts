@@ -4,6 +4,28 @@
 # All things here may not suit everyone.
 # Please modify for your own setup or copy paste needed parts 
 
+# generate ssh keys (needed for upload to your github profile)
+read -t 1 -n 10000 discard
+read -p "Do you want to generate a ssh key pair and upload your public key to github? [y/N]" -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    echo 'If you have not already done so, please create a github account here https://github.com/join before continuing.'
+    echo
+    echo "Don't change path or filename! Just press Enter."
+    ssh-keygen -t rsa
+    ssh-add -K ~/.ssh/id_rsa
+    touch ~/.ssh/config
+    echo "Host *" >> ~/.ssh/config
+    echo "  UseKeychain yes" >> ~/.ssh/config
+    echo "  AddKeysToAgent yes" >> ~/.ssh/config
+    echo "  IdentityFile ~/.ssh/id_rsa" >> ~/.ssh/config
+    pub=`cat ~/.ssh/id_rsa.pub`
+    read -p "Enter github username: " githubuser
+    echo "Using username $githubuser"
+    read -s -p "Enter github password for user $githubuser: " githubpass
+    curl -u "$githubuser:$githubpass" -X POST -d "{\"title\":\"`hostname`\",\"key\":\"$pub\"}" https://api.github.com/user/keys
+fi
+
 #install homebrew package manager
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew tap caskroom/cask
@@ -52,28 +74,6 @@ brew cask install iterm2
 brew install zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sed 's|env zsh -l|# env zsh -l|')"
 echo 'source ~/.bashrc' >> ~/.zshrc
-
-# generate ssh keys (needed for upload to your github profile)
-read -t 1 -n 10000 discard
-read -p "Do you want to generate a ssh key pair and upload your public key to github? [y/N]" -n 1 -r
-echo
-if [[ $REPLY =~ ^[Yy]$ ]]; then
-    echo 'If you have not already done so, please create a github account here https://github.com/join before continuing.'
-    echo
-    echo "Don't change path or filename! Just press Enter."
-    ssh-keygen -t rsa
-    ssh-add -K ~/.ssh/id_rsa
-    touch ~/.ssh/config
-    echo "Host *" >> ~/.ssh/config
-    echo "  UseKeychain yes" >> ~/.ssh/config
-    echo "  AddKeysToAgent yes" >> ~/.ssh/config
-    echo "  IdentityFile ~/.ssh/id_rsa" >> ~/.ssh/config
-    pub=`cat ~/.ssh/id_rsa.pub`
-    read -p "Enter github username: " githubuser
-    echo "Using username $githubuser"
-    read -s -p "Enter github password for user $githubuser: " githubpass
-    curl -u "$githubuser:$githubpass" -X POST -d "{\"title\":\"`hostname`\",\"key\":\"$pub\"}" https://api.github.com/user/keys
-fi
 
 #Manual steps
 echo 'Setup process complete!'
