@@ -60,8 +60,14 @@ echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     echo 'If you have not already done so, please create a github account here https://github.com/join before continuing.'
     echo
+    echo "Don't change path or filename! Just press Enter."
     ssh-keygen -t rsa
     ssh-add -K ~/.ssh/id_rsa
+    touch ~/.ssh/config
+    echo "Host *" >> ~/.ssh/config
+    echo "  UseKeychain yes" >> ~/.ssh/config
+    echo "  AddKeysToAgent yes" >> ~/.ssh/config
+    echo "  IdentityFile ~/.ssh/id_rsa" >> ~/.ssh/config
     pub=`cat ~/.ssh/id_rsa.pub`
     read -p "Enter github username: " githubuser
     echo "Using username $githubuser"
