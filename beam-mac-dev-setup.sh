@@ -23,6 +23,7 @@ nvm alias default 8
 brew install yarn
 brew cask install java8
 brew install maven
+brew install gradle
 brew install postgresql
 ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents
 brew services start postgresql
@@ -42,6 +43,7 @@ brew cask install android-studio
 brew cask install google-chrome
 brew cask install slack
 brew cask install visual-studio-code
+brew cask install intellij-idea-ce
 brew cask install virtualbox
 brew cask install vagrant
 
